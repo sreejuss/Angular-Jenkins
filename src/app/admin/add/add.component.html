@@ -1,0 +1,91 @@
+<div style="color: cadetblue;">
+    <form  #frmval="ngForm" name="myform" id="myform" class="form" (ngSubmit)="createAccount(frmval.value)"  >
+      
+        <div class="form-group">
+            <label for="">Enter id:</label>
+            <input type="text" name="id" #id="ngModel" class="form-control" pattern="[0-9]{6}" ngModel required placeholder="Enter Id">
+            <div *ngIf="id.touched && id.invalid">
+                <div class="alert alert-danger" *ngIf="id.hasError('required')">This field is required.</div>
+                <div class="alert alert-danger" *ngIf="id.hasError('pattern')">This field should contain only Numbers and length should be 6.
+                </div>
+            </div>
+        </div>
+        
+       <div class="form-group">
+        <label for="">Enter Name:</label>
+        <input type="text" name="name" #name="ngModel" class="form-control" pattern="^[a-zA-Z ]{3,30}$" ngModel
+            required placeholder="Enter Full Name">
+        <div *ngIf="name.touched && name.invalid">
+            <div class="alert alert-danger" *ngIf="name.hasError('required')">This field is required.</div>
+            <div class="alert alert-danger" *ngIf="name.hasError('pattern')">Name field should contain only characters.
+            </div>
+        </div>
+    
+        <label for="">Enter Email:</label>
+        <input type="text" name="email" #ename="ngModel" class="form-control"
+            pattern="^[a-z0-9._%+-]+@([a-z0-9.-]{5})+\.[a-z]{2,4}$" ngModel required placeholder="Enter Email">
+        <div *ngIf="ename.touched && ename.invalid">
+            <div class="alert alert-danger" *ngIf="ename.hasError('required')">This field is required.</div>
+            <div class="alert alert-danger" *ngIf="ename.hasError('pattern')">Invalid email.
+            </div>
+        </div>
+     
+      
+       
+        <div class="form-group">
+            <label for="">Enter Phone Number:</label>
+            <input type="text" name="phonenum" #phonenum="ngModel" class="form-control" pattern="[0-9]{10}" ngModel
+                required placeholder="Enter Phone Number">
+            <div *ngIf="phonenum.touched && phonenum.invalid">
+                <div class="alert alert-danger" *ngIf="phonenum.hasError('required')">This field is required.</div>
+                <div class="alert alert-danger" *ngIf="phonenum.hasError('pattern')">This field should contain only Numbers and length should be 6.
+                </div>
+            </div>
+        </div>
+       
+       <br><br>
+       <div class="form-group">
+        <label for="">Enter Designation:</label>
+        <input type="text" name="designation" #designation="ngModel" class="form-control" pattern="^[a-zA-Z ]{2,30}$" ngModel
+            required placeholder="Enter designation">
+        <div *ngIf="designation.touched && designation.invalid">
+            <div class="alert alert-danger" *ngIf="designation.hasError('required')">This field is required.</div>
+            <div class="alert alert-danger" *ngIf="designation.hasError('pattern')">This field should contain only Numbers 
+            </div>
+        </div>
+    </div>
+       
+       <label for="">Select Gender </label> &nbsp;
+       
+       <label>
+           <input type="radio" name="gender" value="M" #gender="ngModel"  ngModel required> Male
+       </label> &nbsp;
+        <label>
+       
+           <input type="radio" name="gender" value="F" #gender="ngModel"  ngModel required>Female 
+       </label><br><br><br>
+    
+       <div class="form-group">
+        <label for="">Enter Age:</label>
+        <input type="text" name="age" #age="ngModel" class="form-control" pattern="[0-9]{2,3}" ngModel
+            required placeholder="Enter age">
+        <div *ngIf="age.touched && age.invalid">
+            <div class="alert alert-danger" *ngIf="age.hasError('required')">This field is required.</div>
+            <div class="alert alert-danger" *ngIf="age.hasError('pattern')">This field should contain only Numbers 
+            </div>
+        </div>
+    </div>
+
+
+ 
+    
+    <br><br>
+       
+       <br><br>
+       <button type="submit" class="btn btn-primary" [disabled]="frmval.invalid" >submit</button>&nbsp;
+       
+       <button type="submit" class="btn btn-warning" [routerLink]="['/admin/admin-dash']">Back</button>
+       <br><br><br>
+       </div>
+       </form>
+       </div>
