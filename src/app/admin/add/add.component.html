@@ -3,10 +3,10 @@
       
         <div class="form-group">
             <label for="">Enter id:</label>
-            <input type="text" name="id" #id="ngModel" class="form-control" pattern="[0-9]{6}" ngModel required placeholder="Enter Id">
-            <div *ngIf="id.touched && id.invalid">
-                <div class="alert alert-danger" *ngIf="id.hasError('required')">This field is required.</div>
-                <div class="alert alert-danger" *ngIf="id.hasError('pattern')">This field should contain only Numbers and length should be 6.
+            <input type="text" name="empid" #empid="ngModel" class="form-control" pattern="[0-9]{6}" ngModel required placeholder="Enter Id">
+            <div *ngIf="empid.touched && empid.invalid">
+                <div class="alert alert-danger" *ngIf="empid.hasError('required')">This field is required.</div>
+                <div class="alert alert-danger" *ngIf="empid.hasError('pattern')">This field should contain only Numbers and length should be 6.
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 required placeholder="Enter Phone Number">
             <div *ngIf="phonenum.touched && phonenum.invalid">
                 <div class="alert alert-danger" *ngIf="phonenum.hasError('required')">This field is required.</div>
-                <div class="alert alert-danger" *ngIf="phonenum.hasError('pattern')">This field should contain only Numbers and length should be 6.
+                <div class="alert alert-danger" *ngIf="phonenum.hasError('pattern')">This field should contain only Numbers and length should be 10.
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
             required placeholder="Enter designation">
         <div *ngIf="designation.touched && designation.invalid">
             <div class="alert alert-danger" *ngIf="designation.hasError('required')">This field is required.</div>
-            <div class="alert alert-danger" *ngIf="designation.hasError('pattern')">This field should contain only Numbers 
+            <div class="alert alert-danger" *ngIf="designation.hasError('pattern')">This field should contain only characters 
             </div>
         </div>
     </div>

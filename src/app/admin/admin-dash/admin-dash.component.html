@@ -44,6 +44,10 @@
                     <button [routerLink]="['/admin','edit',u.id]" class="btn btn-outline-success">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         Edit Account</button> &nbsp;
+
+                    <button (click)="deleteEmployee(u.id)" class="btn btn-outline-success">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        Delete Account</button>
                 
                 </td>
 

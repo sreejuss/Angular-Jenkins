@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 
 import{HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {ModalModule} from 'ngx-bootstrap/modal'
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

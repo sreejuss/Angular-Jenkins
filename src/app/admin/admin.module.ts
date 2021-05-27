@@ -6,8 +6,11 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { EditComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
-import {FormsModule} from '@angular/forms'
-
+import {FormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination'; 
+import {Ng2SearchPipeModule} from 'ng2-search-filter'
+import { OrderModule } from 'ngx-order-pipe';
+import {ModalModule} from 'ngx-bootstrap/modal'
 
 @NgModule({
   declarations: [
@@ -19,7 +22,12 @@ import {FormsModule} from '@angular/forms'
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    OrderModule,
+    ModalModule
+
   ]
 })
 export class AdminModule { }

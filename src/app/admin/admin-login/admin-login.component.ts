@@ -9,7 +9,7 @@ import { AdminServService } from 'src/app/shared/service/admin-serv.service';
 })
 export class AdminLoginComponent implements OnInit {
 
-  uid:string="";
+  name:string="";
   upass:string="";
   adminData:any=[];
 
@@ -19,13 +19,13 @@ export class AdminLoginComponent implements OnInit {
   checkData(){
     this.adminServ.getLoginCredential().subscribe((res)=>{
       this.adminData=res;
-      const data=this.adminData.filter((item:any)=>(item.name==this.uid)&&(item.password==this.upass));
+      const data=this.adminData.filter((item:any)=>(item.name==this.name)&&(item.password==this.upass));
       if(data.length>0){
-        this.adminServ.signin(this.uid)
-        this._router.navigate(['admin/admin-dash'])
+        this.adminServ.signin(this.name)
+        this._router.navigate(['admin/dash'])
       }else{
         alert("invalid login credentials");
-        this.uid="";
+        this.name="";
         this.upass="";
       }
     })

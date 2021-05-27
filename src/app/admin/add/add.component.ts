@@ -18,7 +18,7 @@ export class AddComponent implements OnInit {
   createAccount(val:any){
 
     const empObj={
-      id: val.id,
+      empid: val.empid,
       name: val.name,
       email:val.email,
       password:val.email,
@@ -29,7 +29,7 @@ export class AddComponent implements OnInit {
     }
     this.empSer.addEmployee(empObj).subscribe(()=>{
       alert("Employee added successfully")
-      this._router.navigate(['/admin/admin-dash']) // automatic redirection after adding value
+      this._router.navigate(['/admin/dash']) 
     })
 
   }

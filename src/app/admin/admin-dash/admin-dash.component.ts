@@ -9,7 +9,6 @@ import { EmployeeServService } from 'src/app/shared/service/employee-serv.servic
   styleUrls: ['./admin-dash.component.css']
 })
 export class AdminDashComponent implements OnInit {
-
   empArray:any=[];
   p:number=1;
   term:string="";
@@ -18,7 +17,6 @@ export class AdminDashComponent implements OnInit {
   modalRef: any;
 
   constructor(private empService:EmployeeServService,private router:Router) { }
-
   ngOnInit(): void {
     this.fetchAllData();
   }
@@ -29,6 +27,13 @@ export class AdminDashComponent implements OnInit {
            
     })
   }
+
+  deleteEmployee(id:any){
+    if(confirm(`Are you sure ? ${id}`)){
+      this.empService.deleteEmp(id).subscribe(()=>this.fetchAllData())
+      this.router.navigate(['/admin/dash'])
+    }
+   }
 
   logout(){
     if(confirm("Do you want to logout?")){
