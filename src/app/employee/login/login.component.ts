@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit {
     
       if(data.length>0){
         this.empServ.signin(this.empid)
-        localStorage.setItem("empid",this.empid)
+        sessionStorage.setItem("empid",this.empid)
         // localStorage.setItem("name",this.empData)
-        this._router.navigate(['employee/employee-dash'])
+        this._router.navigate(['employee/dash'])
       }else{
         alert("invalid login credentials");
         this.empid="";

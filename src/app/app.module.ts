@@ -7,13 +7,17 @@ import { HomeComponent } from './home/home.component';
 
 import{HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {ModalModule} from 'ngx-bootstrap/modal'
+import {ModalModule} from 'ngx-bootstrap/modal';
+import { FooterComponent } from './footer/footer.component';
+// import { LeaveModal } from './shared/interface/leave/leave.modal'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,6 @@ export class AdminLoginComponent implements OnInit {
       this.adminData=res;
       const data=this.adminData.filter((item:any)=>(item.name==this.name)&&(item.password==this.upass));
       if(data.length>0){
-        this.adminServ.signin(this.name)
         this._router.navigate(['admin/dash'])
       }else{
         alert("invalid login credentials");

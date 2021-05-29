@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminServService } from 'src/app/shared/service/admin-serv.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { EmployeeServService } from 'src/app/shared/service/employee-serv.service';
 
 @Component({
@@ -15,16 +15,20 @@ export class AdminDashComponent implements OnInit {
   reverse:boolean=true;
   order:string="";
   modalRef: any;
+  leaveArray:any=[];
 
-  constructor(private empService:EmployeeServService,private router:Router) { }
+  constructor(private empService:EmployeeServService,private router:Router,private modalService:BsModalService) { }
   ngOnInit(): void {
     this.fetchAllData();
   }
 
   fetchAllData(){
     this.empService.getAllEmployeeRecord().subscribe((res)=>{
-      this.empArray=res;
-           
+      this.empArray=res;      
+    })
+
+    this.empService.getAllLeaveRecord().subscribe((res)=>{
+      this.leaveArray=res;      
     })
   }
 
@@ -35,12 +39,42 @@ export class AdminDashComponent implements OnInit {
     }
    }
 
+   openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
   logout(){
     if(confirm("Do you want to logout?")){
       this.empService.signout();
       this.router.navigate(['/'])
     }
     
+  }
+  changeOrder(val:any){
+    if(val=="name"){
+      this.order="name";
+      this.reverse=!this.reverse;
+    }
+    else if(val=="email"){
+      this.order="email";
+      this.reverse=!this.reverse;
+    }
+    else if(val=="age"){
+      this.order="age";
+      this.reverse=!this.reverse;
+    }
+    else if(val=="phonenum"){
+      this.order="phonenum";
+      this.reverse=!this.reverse;
+    }
+    else if(val=="designation"){
+      this.order="designation";
+      this.reverse=!this.reverse;
+    }
+    else if(val=="gender"){
+      this.order="gender";
+      this.reverse=!this.reverse;
+    }
   }
 
 }

@@ -1,15 +1,23 @@
-<h2>Welcome {{empid}}</h2>
+<div style="background-color: rgb(230, 226, 221); height: 700px;">
+
+
+    <br><h2>Welcome {{welcomename}}</h2><br><br>
 
 
 
-    <button class="btn btn-outline-primary" (click)="openModal(template)"><i class="fa fa-eye"
-                                            aria-hidden="true"></i> Time sheet</button>
-    <button class="btn btn-outline-primary" (click)="openModal(leave)"><i class="fa fa-eye"
-                                        aria-hidden="true"></i> Leave Application</button>
-    <button class="btn btn-outline-primary" (click)="openModal(leaveHistory)"><i class="fa fa-eye" aria-hidden="true"></i> Leave History</button>
+    <button class="btn btn-outline-primary" (click)="openModal(timesheet)"><i class="fa fa-plus"
+                                            aria-hidden="true"></i> Add Time sheet</button>&nbsp;
+    <button class="btn btn-outline-primary" (click)="openModal(timesheethistory)"><i class="fa fa-history"
+        aria-hidden="true"></i> Time sheet History</button>&nbsp;
+        
+    <button class="btn btn-outline-primary" (click)="openModal(leave)"><i class="fa fa-id-card-o"
+                                        aria-hidden="true"></i> Leave Application</button>&nbsp;
+
+    <button class="btn btn-outline-primary" (click)="openModal(leaveHistory)"><i class="fa fa-history" aria-hidden="true"></i> Leave History</button>&nbsp;
    
-    <button type="button" (click)="logOut()" class="btn btn-outline-info">Logout</button>    
-    <ng-template #template>
+    <button style="margin-left: 340px;" type="button" (click)="logOut()" class="btn btn-outline-warning">Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+    </button>    <br><br>
+    <ng-template #timesheet>
         <div class="modal-header">
             <h4 class="modal-title pull-left">Time Sheet</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -17,9 +25,137 @@
             </button>
         </div>
         <div class="modal-body">
-            <h2>hi</h2>
+            <form  #frmval="ngForm" name="myform" class="form" (ngSubmit)="addTimesheet(frmval.value)">
+                <div class="form-group">
+                    <label for=""> Choose Date:</label>
+                    <input type="date" name="date" #date="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                    <div *ngIf="date.touched && date.invalid">
+                    <div class="alert alert-danger" *ngIf="date.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=""> From:</label>
+                    <input type="time" name="from" #from="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                    <div *ngIf="from.touched && from.invalid">
+                    <div class="alert alert-danger" *ngIf="from.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=""> To:</label>
+                    <input type="time" name="to" #to="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                    <div *ngIf="to.touched && to.invalid">
+                    <div class="alert alert-danger" *ngIf="to.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <br><br>
+                <label for="">Choose </label> &nbsp;
+       
+                <label>
+                    <input type="radio" name="status" value="saved" #status="ngModel"  ngModel required> Save
+                </label> &nbsp;
+                 <label>
+                
+                    <input type="radio" name="status" value="submitted" #status="ngModel"  ngModel required>Submit 
+                </label><br><br><br>
+
+              
+                <button type="submit" class="btn btn-success" [disabled]="frmval.invalid">Submit</button>
+
+            </form>
         </div>
     </ng-template>
+
+    <ng-template #timesheetedit>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Time Sheet</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form  #frmval="ngForm" name="myform" class="form" (ngSubmit)="addTimesheet(frmval.value)">
+                <div class="form-group">
+                    <label for=""> Choose Date:</label>
+                    <input type="date" name="date" #date="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                    <div *ngIf="date.touched && date.invalid">
+                    <div class="alert alert-danger" *ngIf="date.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=""> From:</label>
+                    <input type="time" name="from" #from="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                    <div *ngIf="from.touched && from.invalid">
+                    <div class="alert alert-danger" *ngIf="from.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=""> To:</label>
+                    <input type="time" name="to" #to="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                    <div *ngIf="to.touched && to.invalid">
+                    <div class="alert alert-danger" *ngIf="to.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <br><br>
+                <label for="">Choose </label> &nbsp;
+       
+                <label>
+                    <input type="radio" name="status" value="saved" #status="ngModel"  ngModel required> Save
+                </label> &nbsp;
+                 <label>
+                
+                    <input type="radio" name="status" value="submitted" #status="ngModel"  ngModel required>Submit 
+                </label><br><br><br>
+
+              
+                <button type="submit" class="btn btn-success" [disabled]="frmval.invalid">Submit</button>
+
+            </form>
+        </div>
+    </ng-template>
+
+
+
+    <ng-template #timesheethistory>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">TimeSheet History</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Action</th>
+                        
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <tr  *ngFor="let u of tsObj">
+                        <td>{{u.tdate}}</td>
+                        <td>{{u.start}}</td>
+                        <td>{{u.end}}</td>
+                        <td>
+                            <button [routerLink]="['/employee','edit',u.id]" class="btn btn-outline-success close pull-right"  aria-label="Close" (click)="modalRef.hide()">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                Edit Timesheet</button> &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+        </div>
+    </ng-template>
+
+
 
     <ng-template #leave>
         <div class="modal-header">
@@ -29,19 +165,75 @@
             </button>
         </div>
         <div class="modal-body">
-            <h2>hi</h2>
+            <form  #frmval="ngForm" name="myform" class="form" (ngSubmit)="submitLeave(frmval.value)">
+
+                <div class="form-group">
+                    <label>Select Leave Type</label>
+                    <select name="leavetype" #leavetype="ngModel" id="" class="form-control" ngModel required>
+            
+                        <option value="">Select Type</option>
+                        <option value="EL">EL</option>
+                        <option value="SL">SL</option>
+                        <option value="Maternity">Maternity</option>
+                        <option value="Paternity">Paternity</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <div *ngIf="leavetype.touched && leavetype.invalid">
+                        <div class="alert alert-danger" *ngIf="leavetype.hasError('required')">This field is required</div>
+            
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=""> Choose Date: (from)</label>
+                    <input type="date" name="leavedate" #leavedate="ngModel" class="form-control"  ngModel required >
+                    <div *ngIf="leavedate.touched && leavedate.invalid">
+                    <div class="alert alert-danger" *ngIf="leavedate.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=""> Number of days:</label>
+                    <input type="text" name="nodays" #nodays="ngModel" class="form-control"  ngModel required >
+                    <div *ngIf="nodays.touched && nodays.invalid">
+                    <div class="alert alert-danger" *ngIf="nodays.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success" [disabled]="frmval.invalid">Submit</button>
+
+            </form>
         </div>
     </ng-template>
 
     <ng-template #leaveHistory>
         <div class="modal-header">
-            <h4 class="modal-title pull-left">leave History</h4>
+            <h4 class="modal-title pull-left">Leave History</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <h2>hi</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>No of days</th>
+                        <th>Status</th>
+                        
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <tr  *ngFor="let u of lhistoryObj">
+                        <td>{{u.leavetype}}</td>
+                        <td>{{u.leavedate}}</td>
+                        <td>{{u.nodays}}</td>
+                        <td>{{u.status}}</td>
+
+                       
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </ng-template>
 
@@ -54,15 +246,138 @@
         </div>
         <div class="modal-body">
        <form action="" #frmval="ngForm" name="myform" id="myform" class="form" (ngSubmit)="changePassword(frmval.value)">
-            <label for="">Enter Current Password</label>
-            <input type="text" name="password" id="" class="form-control" >
-            <label for="">Enter New Password</label>
-            <input type="text" name="password" id="" class="form-control">
-            <label for="">Confirm New Password</label>
-            <input type="text" name="password" id="" class="form-control">
+        <div class="form-group">
+            <label for="">Enter Current Password:</label>
+            <input type="text" name="password" #password="ngModel" class="form-control" pattern="^[a-zA-Z ]{3,30}$" ngModel
+                required placeholder="Enter Full Name">
+            <div *ngIf="password.touched && password.invalid">
+                <div class="alert alert-danger" *ngIf="password.hasError('required')">This field is required.</div>
+                <div class="alert alert-danger" *ngIf="password.hasError('pattern')">Password field should contain only characters.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Enter New Password:</label>
+            <input type="text" name="newpassword" #newpassword="ngModel" class="form-control" pattern="^[a-zA-Z ]{3,30}$" ngModel
+                required placeholder="Enter Full Name">
+            <div *ngIf="newpassword.touched && newpassword.invalid">
+                <div class="alert alert-danger" *ngIf="newpassword.hasError('required')">This field is required.</div>
+                <div class="alert alert-danger" *ngIf="newpassword.hasError('pattern')">Name field should contain only characters.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Enter Confirm New Password:</label>
+            <input type="text" name="cpassword" #cpassword="ngModel" class="form-control" pattern="^[a-zA-Z ]{3,30}$" ngModel
+                required placeholder="Enter Full Name">
+            <div *ngIf="cpassword.touched && cpassword.invalid">
+                <div class="alert alert-danger" *ngIf="cpassword.hasError('required')">This field is required.</div>
+                <div class="alert alert-danger" *ngIf="cpassword.hasError('pattern')">Name field should contain only characters.
+                </div>
+            </div>
+        </div><br><br>
             <button type="submit" class="btn btn-primary" [disabled]="frmval.invalid">Change Password</button>
        </form>
         </div>
+    </ng-template>
+
+    <ng-template #updateProfile>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Update Profile</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form  #frmval="ngForm" name="myform" class="form" (ngSubmit)="updateAccount(frmval.value)">
+
+                <label for="">Enter ID</label>
+                <input type="text" name="empid" id=""  #empid="ngModel" class="form-control" ngModel [ngModel]="empObj?.empid" >
+                
+                <div class="form-group">
+                    <label for="">Enter Name:</label>
+                    <input type="text" name="name" #name="ngModel" class="form-control" pattern="^[a-zA-Z ]{3,30}$" ngModel
+                        required placeholder="Enter Full Name" [ngModel]="empObj?.name">
+                    <div *ngIf="name.touched && name.invalid">
+                        <div class="alert alert-danger" *ngIf="name.hasError('required')">This field is required.</div>
+                        <div class="alert alert-danger" *ngIf="name.hasError('pattern')">Name field should contain only characters.
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <label for="">Enter Email:</label>
+                    <input type="text" name="email" #email="ngModel" class="form-control" pattern="^[a-z0-9._%+-]+@([a-z0-9.-]{5})+\.[a-z]{2,4}$" ngModel
+                        required placeholder="Enter  email" [ngModel]="empObj?.email">
+                    <div *ngIf="email.touched && email.invalid">
+                        <div class="alert alert-danger" *ngIf="email.hasError('required')">This field is required.</div>
+                        <div class="alert alert-danger" *ngIf="email.hasError('pattern')">email field should contain only characters.
+                        </div>
+                    </div>
+                </div>
+              
+            
+                
+            
+                
+                <div class="form-group">
+                    <label for="">Enter Phone Number:</label>
+                    <input type="text" name="phonenum" #phonenum="ngModel" class="form-control" pattern="[0-9]{10}" ngModel
+                        required placeholder="Enter phonenum" [ngModel]="empObj?.phonenum">
+                    <div *ngIf="phonenum.touched && phonenum.invalid">
+                        <div class="alert alert-danger" *ngIf="phonenum.hasError('required')">This field is required.</div>
+                        <div class="alert alert-danger" *ngIf="phonenum.hasError('pattern')">This field should contain only Numbers and length should be 6.
+                        </div>
+                    </div>
+                </div>
+                
+                <br><br>
+                    
+                <div class="form-group">
+                    <label for="">Enter Designation:</label>
+                    <input type="text" name="designation" #designation="ngModel" class="form-control" pattern="^[a-zA-Z ]{2,30}$" ngModel
+                        required placeholder="Enter designation" [ngModel]="empObj?.designation">
+                    <div *ngIf="designation.touched && designation.invalid">
+                        <div class="alert alert-danger" *ngIf="designation.hasError('required')">This field is required.</div>
+                        <div class="alert alert-danger" *ngIf="designation.hasError('pattern')">designation field should contain only characters.
+                        </div>
+                    </div>
+                </div>
+                
+                <label for="">Select  Gender</label> &nbsp;
+                
+                <label>
+                    <input type="radio" name="gender" value="M" #type="ngModel"  ngModel required [ngModel]="empObj?.gender"> Male
+                </label> &nbsp;
+                 <label>
+                
+                    <input type="radio" name="gender" value="F" #type="ngModel"  ngModel required [ngModel]="empObj?.gender">Female 
+                </label><br><br>
+            
+                <div class="form-group">
+                    <label for="">Enter Age:</label>
+                    <input type="text" name="age" #age="ngModel" class="form-control" pattern="[0-9]{2,3}" ngModel
+                        required placeholder="Enter age" [ngModel]="empObj?.age">
+                    <div *ngIf="age.touched && age.invalid">
+                        <div class="alert alert-danger" *ngIf="age.hasError('required')">This field is required.</div>
+                        <div class="alert alert-danger" *ngIf="age.hasError('pattern')">This field should contain only Numbers and length should be 6.
+                        </div>
+                    </div>
+                </div>
+            
+                
+                
+                <br><br>
+                <button type="submit" class="btn btn-primary" [disabled]="frmval.invalid" >submit</button>&nbsp;
+                
+                <button type="submit" class="btn btn-warning" [routerLink]="['/admin/dash']">Back</button>
+                <br><br><br>
+                </form>
+            </div>
+
+  
     </ng-template>
 
 <div>
@@ -91,15 +406,13 @@
                 <td>{{empObj.age}}</td>
                 <td>{{empObj.gender}}</td>
                 <td>
-                    <button [routerLink]="['/employee','edit',empObj.id]" class="btn btn-outline-success">
+                    <button (click)="openModal(updateProfile)" class="btn btn-outline-success">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        Edit Account</button> &nbsp;
+                        Update Profile</button> &nbsp;
 
-                    <button class="btn btn-outline-success">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        Delete Account</button>
+                  
                     <button class="btn btn-outline-primary" (click)="openModal(changepassword)">
-                    <i class="fa fa-eye"aria-hidden="true"></i> Change Password</button>
+                    <i class="fa fa-pencil-square-o"aria-hidden="true"></i> Change Password</button>
 
                 </td>
 
@@ -107,4 +420,5 @@
             </tr>
         </tbody>
     </table>
+</div>
 </div>

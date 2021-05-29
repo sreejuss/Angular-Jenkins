@@ -1,6 +1,6 @@
 export interface IAdmin {
 
-    id?:number;
+    id:number;
     name:string;
     password:string;
 }

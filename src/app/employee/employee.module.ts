@@ -9,11 +9,13 @@ import {ModalModule} from 'ngx-bootstrap/modal'
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import {Ng2SearchPipeModule} from 'ng2-search-filter'
 import { OrderModule } from 'ngx-order-pipe';
+import { EditTimesheetComponent } from './edit-timesheet/edit-timesheet.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    EmployeeDashComponent
+    EmployeeDashComponent,
+    EditTimesheetComponent
   ],
   imports: [
     CommonModule,

@@ -10,7 +10,6 @@ import { EmployeeServService } from 'src/app/shared/service/employee-serv.servic
 export class EditComponent implements OnInit {
 
   id:number=0;
-  // uid:number=0;
   empObj:any;
   constructor(private empServ:EmployeeServService,private _route:Router, private _ActRoute:ActivatedRoute) { }
   ngOnInit(): void { 
@@ -21,7 +20,8 @@ export class EditComponent implements OnInit {
   this.empServ.getSingleRecord(this.id).subscribe((res)=>{
     this.empObj={...res}
     console.log(this.empObj);      
-  })}
+  })
+}
   updateAccount(val:any){
     
     
@@ -39,6 +39,7 @@ export class EditComponent implements OnInit {
       
     }
     this.empServ.updateAccount(empObj).subscribe(()=>{
+      
       alert("data updated successfully");
       this._route.navigate(['admin/dash']);
     })

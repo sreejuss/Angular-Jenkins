@@ -10,14 +10,16 @@ import {FormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import {Ng2SearchPipeModule} from 'ng2-search-filter'
 import { OrderModule } from 'ngx-order-pipe';
-import {ModalModule} from 'ngx-bootstrap/modal'
+import {ModalModule} from 'ngx-bootstrap/modal';
+import { ViewTimesheetComponent } from './view-timesheet/view-timesheet.component'
 
 @NgModule({
   declarations: [
     AdminLoginComponent,
     AdminDashComponent,
     EditComponent,
-    AddComponent
+    AddComponent,
+    ViewTimesheetComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,7 @@ import {ModalModule} from 'ngx-bootstrap/modal'
     NgxPaginationModule,
     Ng2SearchPipeModule,
     OrderModule,
-    ModalModule
+    ModalModule.forRoot()
 
   ]
 })

@@ -1,10 +1,17 @@
-<h2>Employee List</h2> <br>
+<div style="background-color: rgb(230, 226, 221);height: 700px;">
+    <h2>Employee List</h2> <br>
 
 <div>
 
     <div class="row">
         <div class="col">
             <button class="btn btn-outline-primary btn-sm" [routerLink]="['/admin','add']">Create New Account</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/admin','view']">View TimeSheet</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-outline-primary btn-sm" (click)="openModal(viewLeave)">View Leave Request</button>
         </div>
         <div class="col">
             <input type="text" name="search" placeholder="search..." [(ngModel)]="term" style="margin-left: 10px;"><br><br>
@@ -16,22 +23,63 @@
             </button>
         </div>
     </div>
+    <ng-template #viewLeave>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Time Sheet</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Emp Id</th>
+                        <th>Name</th>
+                        <th>Leave Type</th>
+                        <th>From</th>
+                        <th>No of days</th>
+                        <!-- <th>Total Hours</th> -->
+                        <!-- <th>Gender</th>
+                        <th>Actions</th> -->
+                    </tr>
+                </thead>
+            
+                <tbody>
+                    <tr
+                        *ngFor="let u of leaveArray ">
+            
+                        <td>{{u.empid}}</td>
+            
+                        <td>{{u.name}}</td>
+                        <td>{{u.leavetype}}</td>
+                        <td>{{u.leavedate}}</td>
+                        <td>{{u.nodays}}</td>
+                       
+                      
+            
+                      
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone number</th>
-                <th>Designation</th>
-                <th>Age</th>
-                <th>Gender</th>
+                <th (click)="changeOrder('name')">Name</th>
+                <th (click)="changeOrder('email')">Email</th>
+                <th (click)="changeOrder('phonenum')">Phone number</th>
+                <th (click)="changeOrder('designation')">Designation</th>
+                <th (click)="changeOrder('age')">Age</th>
+                <th (click)="changeOrder('gender')">Gender</th>
                 <th>Actions</th>
             </tr>
         </thead>
 
         <tbody>
             <tr
-                *ngFor="let u of empArray ">
+                *ngFor="let u of empArray |filter:term  | paginate: { itemsPerPage: 5, currentPage: p }  | orderBy: order:reverse ">
 
 
                 <td>{{u.name}}</td>
@@ -57,4 +105,5 @@
     </table>
 </div>
 
-<!-- <pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls> -->
+<pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls>
+</div>

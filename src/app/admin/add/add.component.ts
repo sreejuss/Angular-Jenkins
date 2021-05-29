@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminServService } from 'src/app/shared/service/admin-serv.service';
 import { EmployeeServService } from 'src/app/shared/service/employee-serv.service';
 
 @Component({
@@ -14,9 +13,7 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   createAccount(val:any){
-
     const empObj={
       empid: val.empid,
       name: val.name,
@@ -31,6 +28,5 @@ export class AddComponent implements OnInit {
       alert("Employee added successfully")
       this._router.navigate(['/admin/dash']) 
     })
-
   }
 }

@@ -1,0 +1,39 @@
+<br><br>
+<div class="col">
+    <input type="text" name="search" placeholder="search..." [(ngModel)]="term" style="margin-left: 10px;"><br><br>
+
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th (click)="changeOrder('empid')">Emp Id</th>
+            <th (click)="changeOrder('name')">Name</th>
+            <th (click)="changeOrder('date')">Date</th>
+            <th (click)="changeOrder('from')">From</th>
+            <th (click)="changeOrder('to')">To</th>
+            <th (click)="changeOrder('total')">Total Hours</th>
+            <!-- <th>Gender</th>
+            <th>Actions</th> -->
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr
+            *ngFor="let u of timeSheet |filter:term  | paginate: { itemsPerPage: 10, currentPage: p }  | orderBy: order:reverse">
+
+            <td>{{u.empid}}</td>
+
+            <td>{{u.name}}</td>
+            <td>{{u.tdate}}</td>
+            <td>{{u.start}}</td>
+            <td>{{u.end}}</td>
+            <td>{{u.totalhours}}</td>
+            <!-- <td>{{u.gender}}</td> -->
+          
+
+          
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls>
