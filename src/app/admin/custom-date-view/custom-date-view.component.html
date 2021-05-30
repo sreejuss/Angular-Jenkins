@@ -3,9 +3,6 @@
     <input type="text" name="search" placeholder="search..." [(ngModel)]="term" style="margin-left: 10px;"><br><br>
 
 </div>
-<div class="col">
-    <button class="btn btn-outline-primary btn-sm" [routerLink]="['/admin','custom']">Custom View</button>
-</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -15,8 +12,7 @@
             <th (click)="changeOrder('from')">From</th>
             <th (click)="changeOrder('to')">To</th>
             <th (click)="changeOrder('total')">Total Hours</th>
-            <!-- <th>Gender</th>
-            <th>Actions</th> -->
+            
         </tr>
     </thead>
 
@@ -31,7 +27,7 @@
             <td>{{u.start}}</td>
             <td>{{u.end}}</td>
             <td>{{u.totalhours}}</td>
-            <!-- <td>{{u.gender}}</td> -->
+            
           
 
           

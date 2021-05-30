@@ -9,6 +9,7 @@ import{HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 // import { LeaveModal } from './shared/interface/leave/leave.modal'
 
 
@@ -17,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
     AppComponent,
     HomeComponent,
     FooterComponent,
+    HeaderComponent,
     
   ],
   imports: [

@@ -1,0 +1,81 @@
+<br><br>
+<div>
+    <div class="row">
+        <!-- <h5>Get Timesheet Report Between 2 Dates</h5> -->
+        <form  #frmval="ngForm" name="myform" class="form" (ngSubmit)="getByCustomDate(frmval.value)" style="width: 800px;">
+            <h5>Get Timesheet Report Between 2 Dates</h5>
+            <div class="form-group">
+                <label for=""> Choose Date Range:</label><br>
+                <label for="">From</label>
+                <input type="date" name="date1" #date1="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                <div *ngIf="date1.touched && date1.invalid">
+                <div class="alert alert-danger" *ngIf="date1.hasError('required')">This field is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for=""> To:</label>
+                <input type="date" name="date2" #date2="ngModel" class="form-control"  ngModel required placeholder="choose date">
+                <div *ngIf="date2.touched && date2.invalid">
+                <div class="alert alert-danger" *ngIf="date2.hasError('required')">This field is required.</div>
+                </div>
+            </div>     <br>
+            <button type="submit" class="btn btn-success" [disabled]="frmval.invalid">Get </button>   
+        </form>
+        </div><br><hr>
+        <div>
+        <h5>Yearwise Report</h5>
+        <form  #frmval1="ngForm" name="myform1" class="form" (ngSubmit)="getByCustomYear(frmval1.value)" style="width: 800px;">
+            <div class="form-group">
+                <label for=""> Enter Year:</label>
+                <input type="text" name="year" #year="ngModel" class="form-control"  ngModel required placeholder="Enter year">
+                <div *ngIf="year.touched && year.invalid">
+                <div class="alert alert-danger" *ngIf="year.hasError('required')">This field is required.</div>
+                </div>
+            </div>
+                <br>
+            <button type="submit" class="btn btn-success" [disabled]="frmval1.invalid">Get </button>   
+        </form>
+        </div>
+        <br><hr>
+        <div>
+            <h5>Monthly Report</h5>
+            <form  #frmval2="ngForm" name="myform2" class="form" (ngSubmit)="getByCustomMonth(frmval2.value)" style="width: 800px;">
+                <div class="form-group">
+                    <label for=""> Enter Year:</label>
+                    <input type="text" name="year" #year="ngModel" class="form-control"  ngModel required placeholder="Enter year">
+                    <div *ngIf="year.touched && year.invalid">
+                    <div class="alert alert-danger" *ngIf="year.hasError('required')">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select Month:</label>
+                    <select name="month" #month="ngModel" id="" class="form-control" ngModel required>
+            
+                        <option value="">Select month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">Mar</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+
+                        
+                    </select>
+                    <div *ngIf="month.touched && month.invalid">
+                        <div class="alert alert-danger" *ngIf="month.hasError('required')">This field is required</div>
+            
+                    </div>
+                </div>
+                
+                    <br>
+                <button type="submit" class="btn btn-success" [disabled]="frmval2.invalid">Get </button>   
+            </form>
+            </div>
+    </div>
+<br><br><br>

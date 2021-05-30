@@ -5,7 +5,9 @@ export interface ILeave {
     empid:number;
     leavetype:string;
     status:string;
-    leavedate:number;
-    nodays:string;
+    leavedate:Date;
+    nodays:number;
     
 }
+
+

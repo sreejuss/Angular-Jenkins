@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AdminServService } from 'src/app/shared/service/admin-serv.service';
+import { EmployeeServService } from 'src/app/shared/service/employee-serv.service';
 
 @Component({
-  selector: 'app-view-timesheet',
-  templateUrl: './view-timesheet.component.html',
-  styleUrls: ['./view-timesheet.component.css']
+  selector: 'app-custom-date-view',
+  templateUrl: './custom-date-view.component.html',
+  styleUrls: ['./custom-date-view.component.css']
 })
-export class ViewTimesheetComponent implements OnInit {
+export class CustomDateViewComponent implements OnInit {
 
   p:number=1;
   term:string="";
   reverse:boolean=true;
   order:string="";
   timeSheet:any;
-  constructor(private adminService:AdminServService,private router:Router) { }
+  constructor(private empServ:EmployeeServService) { }
 
   ngOnInit(): void {
-    this.fetchAllData();
-  }
 
-  fetchAllData(){
-    this.adminService.getTimeSheet().subscribe((res)=>{
+    this.empServ.getByCustomDate(sessionStorage.getItem("date1"),sessionStorage.getItem("date2")).subscribe((res)=>{
       this.timeSheet=res;
-           
+      console.log(res);
+      
     })
+
+
   }
 
+
+
+
+
+
+  
   changeOrder(val:any){
     if(val=="name"){
       this.order="name";
@@ -54,4 +59,5 @@ export class ViewTimesheetComponent implements OnInit {
       this.reverse=!this.reverse;
     }
   }
+
 }

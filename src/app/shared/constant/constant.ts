@@ -18,3 +18,11 @@ export const leaveUrl:string="http://localhost:8081/api/leaves";
 
 export const singleleaveUrl:string="http://localhost:8081/api/leave";
 
+export const customdateUrl:string="http://localhost:8081/api/customdate";
+
+export const customYearUrl:string="http://localhost:8081/api/customyear";
+
+export const customYearMonth:string="http://localhost:8081/api/custommonth";
+
+
+

@@ -11,7 +11,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {Ng2SearchPipeModule} from 'ng2-search-filter'
 import { OrderModule } from 'ngx-order-pipe';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import { ViewTimesheetComponent } from './view-timesheet/view-timesheet.component'
+import { ViewTimesheetComponent } from './view-timesheet/view-timesheet.component';
+import { CustomViewComponent } from './custom-view/custom-view.component';
+import { CustomDateViewComponent } from './custom-date-view/custom-date-view.component';
+import { CustomYearViewComponent } from './custom-year-view/custom-year-view.component';
+import { CustomMonthViewComponent } from './custom-month-view/custom-month-view.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { ViewTimesheetComponent } from './view-timesheet/view-timesheet.componen
     AdminDashComponent,
     EditComponent,
     AddComponent,
-    ViewTimesheetComponent
+    ViewTimesheetComponent,
+    CustomViewComponent,
+    CustomDateViewComponent,
+    CustomYearViewComponent,
+    CustomMonthViewComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-<div style="background-color: rgb(230, 226, 221);height: 700px;">
+<div style="background-color: rgb(245, 244, 244);height: 700px;">
     <h2>Employee List</h2> <br>
 
 <div>
@@ -7,9 +7,13 @@
         <div class="col">
             <button class="btn btn-outline-primary btn-sm" [routerLink]="['/admin','add']">Create New Account</button>
         </div>
+
         <div class="col">
             <button class="btn btn-outline-primary btn-sm" [routerLink]="['/admin','view']">View TimeSheet</button>
         </div>
+       
+
+
         <div class="col">
             <button class="btn btn-outline-primary btn-sm" (click)="openModal(viewLeave)">View Leave Request</button>
         </div>
@@ -25,7 +29,7 @@
     </div>
     <ng-template #viewLeave>
         <div class="modal-header">
-            <h4 class="modal-title pull-left">Time Sheet</h4>
+            <h4 class="modal-title pull-left">Leave Requests</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -40,8 +44,8 @@
                         <th>From</th>
                         <th>No of days</th>
                         <!-- <th>Total Hours</th> -->
-                        <!-- <th>Gender</th>
-                        <th>Actions</th> -->
+                        <!-- <th>Gender</th>-->
+                        <th>Actions</th> 
                     </tr>
                 </thead>
             
@@ -55,10 +59,15 @@
                         <td>{{u.leavetype}}</td>
                         <td>{{u.leavedate}}</td>
                         <td>{{u.nodays}}</td>
-                       
-                      
-            
-                      
+                        <td>
+                            <button (click)="approveLeave(u)" class="btn btn-outline-success">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                 Approve</button><br>
+                            <button (click)="rejectLeave(u)" class="btn btn-outline-danger">
+                                <i class="fa fa-ban" aria-hidden="true"></i>
+                                Reject</button>
+                            
+                        </td>
                     </tr>
                 </tbody>
             </table>

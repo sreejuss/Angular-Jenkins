@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { allEmployeesUrl,leaveUrl,singleEmployeesUrl, singleleaveUrl, singleTimeSheet, timesheetUrl } from '../constant/constant';
+import { allEmployeesUrl,customdateUrl,customYearMonth,customYearUrl,leaveUrl,singleEmployeesUrl, singleleaveUrl, singleTimeSheet, timesheetUrl } from '../constant/constant';
 import { IEmployee } from '../interface/employee.modal';
 import { ILeave } from '../interface/leave.modal';
 import { ITimesheet } from '../interface/timesheet.modal';
@@ -48,6 +48,10 @@ export class EmployeeServService {
 
   updateAccount(emp:any){
     const url:string=`${allEmployeesUrl}`;
+    return this._http.put(url,emp);
+  }
+  approveLeaveFun(emp:any){
+    const url:string=`${leaveUrl}`;
     return this._http.put(url,emp);
   }
 
@@ -100,6 +104,33 @@ export class EmployeeServService {
   
   getLoginCredential(){
     return this._http.get<IEmployee[]>(allEmployeesUrl);
+  }
+
+  getByCustomDate(d1:any,d2:any){
+
+    const url:string=`${customdateUrl}/${d1}/${d2}`;
+    return this._http.get<ITimesheet>(url);
+
+  }
+  getByCustomMonth(d1:any,d2:any){
+
+    const url:string=`${customYearMonth}/${d1}/${d2}`;
+    return this._http.get<ITimesheet>(url);
+
+  }
+  getByCustomYear(d1:any){
+
+    const url:string=`${customYearUrl}/${d1}`;
+    return this._http.get<ITimesheet>(url);
+
+  }
+
+
+  date1(d1:any){
+    sessionStorage.setItem("date1",d1);
+  }
+  date2(d2:any){
+    sessionStorage.setItem("date1",d2);
   }
 
 }

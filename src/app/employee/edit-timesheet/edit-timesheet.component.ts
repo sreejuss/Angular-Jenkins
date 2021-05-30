@@ -19,7 +19,9 @@ export class EditTimesheetComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.empid=localStorage.getItem("empid")
+    this.empid=sessionStorage.getItem("empid")
+    console.log("from local"+this.empid);
+    
     this.empServ.getSingleEmp(this.empid).subscribe((res)=>{
       this.empObj={...res}
       console.log("empobj"+this.empObj); 
@@ -27,26 +29,27 @@ export class EditTimesheetComponent implements OnInit {
 
     this._ActRoute.paramMap.subscribe((parm)=>{
       this.id=Number(parm.get('id'));
-      console.log(this.id);
+      console.log("iddd "+this.id);
     });
     this.empServ.getSingleTimeSheetById(this.id).subscribe((res)=>{
-      this.tObj={...res}
-      console.log(this.tObj);      
+      this.tObj=res
+      console.log("t obj "+this.tObj);      
     })
   }
 
   
   editTimesheet(val:any){
     console.log("value"+val);
-    this.from=val.date+" "+val.from;
-    console.log("from : ",this.from);
-    this.to=val.date+" "+val.to;
-    console.log("to : ",this.to);    
+    console.log("date"+val.date);
+    console.log("status"+val.status);
+
+    console.log("from : ",val.from);
+    console.log("to : ",val.to);    
      const editObj={
       
-      id:this.empObj.id,
-      empid: this.empObj.empid,
-      name: this.empObj.name,
+      id:this.id,
+      empid: this.tObj.empid,
+      name: this.tObj.name,
       tdate:val.date,
       start:val.from+":00",
       end:val.to+":00",

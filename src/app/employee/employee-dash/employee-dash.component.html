@@ -254,12 +254,14 @@
                 <div class="alert alert-danger" *ngIf="password.hasError('required')">This field is required.</div>
                 <div class="alert alert-danger" *ngIf="password.hasError('pattern')">Password field should contain only characters.
                 </div>
+              
             </div>
         </div>
+        <span style="color:red">{{msg1}}</span><br><br>
 
         <div class="form-group">
             <label for="">Enter New Password:</label>
-            <input type="text" name="newpassword" #newpassword="ngModel" class="form-control" pattern="^[a-zA-Z ]{3,30}$" ngModel
+            <input type="text" name="npassword" #newpassword="ngModel" class="form-control" pattern="^[a-zA-Z ]{3,30}$" ngModel
                 required placeholder="Enter Full Name">
             <div *ngIf="newpassword.touched && newpassword.invalid">
                 <div class="alert alert-danger" *ngIf="newpassword.hasError('required')">This field is required.</div>
@@ -277,7 +279,8 @@
                 <div class="alert alert-danger" *ngIf="cpassword.hasError('pattern')">Name field should contain only characters.
                 </div>
             </div>
-        </div><br><br>
+        </div>
+        <span style="color:red">{{msg2}}</span><br><br>
             <button type="submit" class="btn btn-primary" [disabled]="frmval.invalid">Change Password</button>
        </form>
         </div>

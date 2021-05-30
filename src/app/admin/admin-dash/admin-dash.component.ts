@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { EmployeeServService } from 'src/app/shared/service/employee-serv.service';
 
@@ -16,8 +16,11 @@ export class AdminDashComponent implements OnInit {
   order:string="";
   modalRef: any;
   leaveArray:any=[];
+  id:number=0;
+  empObj:any=[];
+ 
 
-  constructor(private empService:EmployeeServService,private router:Router,private modalService:BsModalService) { }
+  constructor(private empService:EmployeeServService,private router:Router,private modalService:BsModalService,private _ActRoute:ActivatedRoute) { }
   ngOnInit(): void {
     this.fetchAllData();
   }
@@ -28,8 +31,50 @@ export class AdminDashComponent implements OnInit {
     })
 
     this.empService.getAllLeaveRecord().subscribe((res)=>{
-      this.leaveArray=res;      
+      this.leaveArray=res;   
+      // this.id1=this.leaveArray.id;   
     })
+  }
+
+  approveLeave(val:any){
+ 
+    const empObj1={
+      id:val.id,
+      empid: val.empid,
+      name:val.name,
+      status:"Approved",
+      leavetype:val.leavetype,
+      leavedate:val.leavedate,
+      nodays:val.nodays
+     
+    }
+   
+    this.empService.approveLeaveFun(empObj1).subscribe(()=>{
+      
+      alert("Leave Approved");
+      this.router.navigate(['admin/dash']);
+    })
+
+  }
+
+  rejectLeave(val:any){
+    const empObj2={
+      id:val.id,
+      empid: val.empid,
+      name:val.name,
+      status:"Rejected",
+      leavetype:val.leavetype,
+      leavedate:val.leavedate,
+      nodays:val.nodays
+     
+    }
+   
+    this.empService.approveLeaveFun(empObj2).subscribe(()=>{
+      
+      alert("Leave Rejected");
+      this.router.navigate(['admin/dash']);
+    })
+
   }
 
   deleteEmployee(id:any){

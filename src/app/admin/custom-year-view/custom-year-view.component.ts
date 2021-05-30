@@ -1,31 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AdminServService } from 'src/app/shared/service/admin-serv.service';
+import { EmployeeServService } from 'src/app/shared/service/employee-serv.service';
 
 @Component({
-  selector: 'app-view-timesheet',
-  templateUrl: './view-timesheet.component.html',
-  styleUrls: ['./view-timesheet.component.css']
+  selector: 'app-custom-year-view',
+  templateUrl: './custom-year-view.component.html',
+  styleUrls: ['./custom-year-view.component.css']
 })
-export class ViewTimesheetComponent implements OnInit {
+export class CustomYearViewComponent implements OnInit {
 
+  
   p:number=1;
   term:string="";
   reverse:boolean=true;
   order:string="";
   timeSheet:any;
-  constructor(private adminService:AdminServService,private router:Router) { }
+
+  constructor(private empServ:EmployeeServService) { }
 
   ngOnInit(): void {
-    this.fetchAllData();
-  }
 
-  fetchAllData(){
-    this.adminService.getTimeSheet().subscribe((res)=>{
+    this.empServ.getByCustomYear(sessionStorage.getItem("year")).subscribe((res)=>{
       this.timeSheet=res;
-           
+      console.log(res);
+      
     })
   }
+
+
 
   changeOrder(val:any){
     if(val=="name"){
@@ -54,4 +55,6 @@ export class ViewTimesheetComponent implements OnInit {
       this.reverse=!this.reverse;
     }
   }
+
+
 }

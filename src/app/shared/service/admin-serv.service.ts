@@ -17,21 +17,15 @@ export class AdminServService {
     return this._http.get<IAdmin[]>(adminLoginUrl);
   }
 
-
-
-
-
   signin(user:any){
     sessionStorage.setItem("user",user);
   }
 
-  
   signout(){
     sessionStorage.removeItem("user");
   }
   getTimeSheet(){
     return this._http.get<ITimesheet[]>(timesheetUrl);
   }
-
   
 }

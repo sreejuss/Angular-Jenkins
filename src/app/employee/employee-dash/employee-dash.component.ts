@@ -30,12 +30,25 @@ export class EmployeeDashComponent implements OnInit {
   leaveObj:any=[];
   welcomename:string="";
   lhistoryObj:any=[];
+  newpass:any;
+  confirmpass:any;
+  oldpass:any;
+  msg1:any;
+  msg2:any;
   constructor(private empServ:EmployeeServService,private modalService:BsModalService,private _router:Router) { }
 
   ngOnInit(): void {
+    // var timeStart = new Date("01/01/2007 " + valuestart).getHours();
+  var timeEnd = new Date("01/01/2007 " + "01:01:01").getHours();
+    console.log("jjhh"+timeEnd);
+    
     this.empid=sessionStorage.getItem("empid")
     this.empServ.getSingleEmp(this.empid).subscribe((res)=>{
       this.empObj={...res}
+      this.oldpass=this.empObj.password;
+      console.log(this.oldpass);
+      
+      
       this.welcomename=this.empObj.name;
     })
     this.empServ.getSingleLeaveRecord(this.empid).subscribe((res)=>{
@@ -44,7 +57,7 @@ export class EmployeeDashComponent implements OnInit {
   
     this.empServ.getSingleTimeSheet(this.empid).subscribe((res)=>{
       this.tsObj=res
-      console.log(this.tsObj); 
+      console.log("tsobj"+this.tsObj); 
     })
   }
 
@@ -68,21 +81,21 @@ export class EmployeeDashComponent implements OnInit {
 
 
 
-  addTimesheet(val:any){
-    console.log("value"+val);
-     this.from=val.date+" "+val.from;
-     console.log("from : ",this.from+":00");
-     this.to=val.date+" "+val.to;
-     console.log("to : ",this.to);
-
+  addTimesheet(val:any){    
+    
+  
      const timeObj={
       empid: this.empObj.empid,
       name: this.empObj.name,
       tdate:val.date,
       start:val.from+":00",
       end:val.to+":00",
-      status:val.status
+      status:val.status,
+      totalhours:1
+      
     }
+    console.log(timeObj);
+    
     this.empServ.addTimesheet(timeObj).subscribe(()=>{
       alert("Timesheet added successfully")
       this._router.navigate(['/employee/dash']) 
@@ -92,10 +105,16 @@ export class EmployeeDashComponent implements OnInit {
 
 
   changePassword(val:any){
-
-    console.log("val",val);
-    console.log("empobj",this.empObj);
-    console.log("empobj1",this.empObj1);
+    this.newpass=val.npassword;
+    this.confirmpass=val.cpassword;
+    if(this.oldpass!=val.password){
+       this.msg1="Incorrect Current Password!!";
+      return this.msg1;
+    }
+    if(this.newpass!=this.confirmpass){
+      this.msg2=" mismatch!!";
+      return this.msg2;
+    }
     const empObj1={
       id: this.empObj.id,
       name: this.empObj.name,
@@ -106,13 +125,11 @@ export class EmployeeDashComponent implements OnInit {
       age:this.empObj.age,
       empid:this.empObj.empid,
       gender:this.empObj.gender
-
     }
     this.empServ.changePassword(empObj1).subscribe(()=>{
       alert("Password changed successfully")
       this._router.navigate(['/employee/dash']) // automatic redirection after adding value
     })
-
 }
 
 updateAccount(val:any){
