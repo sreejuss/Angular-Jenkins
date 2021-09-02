@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { adminLoginUrl, timesheetUrl } from '../constant/constant';
+import { adminLoginUrl, submittedtimesheet, timesheetUrl } from '../constant/constant';
 import { IAdmin } from '../interface/admin.modal';
 import { HttpClient } from '@angular/common/http';
 import { ITimesheet } from '../interface/timesheet.modal';
@@ -25,7 +25,7 @@ export class AdminServService {
     sessionStorage.removeItem("user");
   }
   getTimeSheet(){
-    return this._http.get<ITimesheet[]>(timesheetUrl);
+    return this._http.get<ITimesheet[]>(submittedtimesheet);
   }
   
 }

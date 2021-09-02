@@ -28,7 +28,6 @@ export class CustomMonthViewComponent implements OnInit {
 
 
 
-
   changeOrder(val:any){
     if(val=="name"){
       this.order="name";

@@ -25,4 +25,7 @@ export const customYearUrl:string="http://localhost:8081/api/customyear";
 export const customYearMonth:string="http://localhost:8081/api/custommonth";
 
 
+export const submittedtimesheet:string="http://localhost:8081/api/submittedtimesheet";
+
+
 
