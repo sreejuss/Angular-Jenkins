@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('npm install') {
             steps {
-                'C:\Windows\System32\cmd.exe' 'npm install'
+                sh 'npm install'
             }
         }
     }
