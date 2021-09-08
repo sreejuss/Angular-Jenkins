@@ -1,10 +1,11 @@
-node{
-  
-  stage('install node modules'){
-    sh 'npm install'
-}
-   stage('build'){
-    sh 'npm run build'
-}
-  
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+    }
 }
