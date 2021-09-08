@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                C:\Windows\System32\cmd.exe 'npm install'
+                'C:\Windows\System32\cmd.exe' 'npm install'
             }
         }
     }
